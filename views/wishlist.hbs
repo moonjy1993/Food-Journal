@@ -1,0 +1,121 @@
+<style>
+	
+	h1,h3,p,li{
+		color:white;
+		list-style-type:none;
+		font-size: 150%;
+	}
+	
+	#bd{
+		padding-left: 400px;
+		text-align: center,
+		
+	}
+	.visible{
+		display:none;
+	}
+</style>
+<script>
+	document.addEventListener("DOMContentLoaded", function(){
+		var btn = document.getElementById('btn');
+		btn.addEventListener("click", function(evt){
+			evt.preventDefault();
+			var url = "http://localhost:3000/api/wishlist";
+
+
+			var checkoff = document.querySelector('.checkoff').value;
+			url = url + "?name=" + checkoff;
+			//create object
+			var req = new XMLHttpRequest();
+
+
+			req.open('GET', url, true);
+			console.log('clicked');
+			req.addEventListener("load", function() {
+				console.log(req.responseText);
+
+				var remove=document.getElementById(checkoff);
+				remove.parentNode.removeChild(remove);
+
+				
+				var li=document.createElement('li');
+				var del=document.createElement('del');
+				li.appendChild(del);
+				del.textContent=checkoff;
+				
+				
+				var wishlist = document.querySelector('#list');
+
+				wishlist.appendChild(li);
+				
+			});
+			req.send();
+		})
+	})
+
+	document.addEventListener('DOMContentLoaded', onLoad);
+	function onLoad() {
+		console.log('load');
+		document.getElementById('button').addEventListener('click', onClick);
+	}
+	function onClick(evt) {
+		console.log('click');
+		// create POST request
+		evt.preventDefault();
+		var req = new XMLHttpRequest();
+		req.open('POST', '/api/wishlist/create', true);
+		// set header
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+		// retrieve input
+		var input = document.querySelector('#input').value;
+		
+		// because this is a POST, specify data in body
+		req.send('name=' + input);
+		// when request comes back / complets... do some stuff
+		// req.send finished
+		req.addEventListener('load', function() {
+			var li=document.createElement('li');
+			li.id=input;
+			li.textContent=input;
+			var wishlist = document.querySelector('#list');
+			wishlist.insertBefore(li, wishlist.childNodes[0]);
+			console.log(req, req.status, req.responseText);
+		});
+	}
+
+</script>
+
+
+
+
+<div id="bd">
+	<h1> Wish List </h1>
+	<form method="POST" action="/api/wishlist/create">
+		<p> New Restaurant</p> <input type="text" name="input" id="input" />
+		
+		<input type="submit" name="button" id="button" value="Create" />
+		<br><br>
+	</form>
+
+
+	<form action="/api/wishlist" method="get">
+		<p>Check off the restaurant if you visited!</p>
+		<input type="text" class="checkoff" name="checkoff" value="{{checkoff}}" >	
+		<input id="btn" type="submit" value="Check off!">
+	</form>
+
+		<div id="wish-list">
+			<ul id="list">
+				{{#each wish}}
+					{{#unless checked}}
+						<li id="{{name}}"> {{name}} </li>
+					{{/unless}}
+					{{#if checked}}
+						<li id="{{name}}"> <del> {{name}} </del></li>
+					{{/if}}
+				{{/each}}
+			</ul>
+		</div>
+</div>
+
+

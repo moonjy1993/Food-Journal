@@ -1,0 +1,78 @@
+<style>
+	body {
+		color: white;
+	}
+
+	.fooditems{
+		color: white;
+		font-family: "Arial Black", Gadget, sans-serif;
+		text-align: center;
+
+	}
+
+
+	#comment{
+		color: yellow;
+		font-family: "Times New Roman", Times, serif;
+		font-size:150%;
+	}
+
+	#commentBox{
+		width: 300px;
+		height: 150px;
+	}
+	
+	
+</style>
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			<h1>{{title}}</h1>
+			</br>
+		</div>
+			<form method="POST" action="/food/{{title}}">
+				<div class="col-md-4 col-md-offset-4">
+					{{#if list_items}}
+					{{#each list_items}}
+						<ul class="list-group">
+							{{#unless checked}}
+							<li class="fooditems">
+								<input type="checkbox" name="itemCheckbox" value="{{name}}" id="{{slug}}">
+
+									<h3 > {{name}} </h3> <br><br>
+									<img src= "data:{{imagetype}};base64,{{imagebase64}}" height="200px" width="300px" >
+									<br><br>
+									<p id="comment"> {{comment}} </p>
+							</li>
+							{{/unless}}
+							<input type="hidden" name="{{title}}" value="{{title}}">
+						</ul>
+					{{/each}}
+					<div class="col-md-4 col-md-offset-3">
+						<input type="submit" value="Delete" class="btn btn-default btn-lg">
+					</div
+					<br></br>
+					<br></br>
+					<hr>
+					{{/if}}
+			</form>
+
+		<form method="POST" action="" class="form-inline" role="form" enctype="multipart/form-data">
+
+			What is this? 
+			<input type="text" class="form-control" name="name" placeholder="Add Food">
+			<br><br>
+			How was it?
+			<input type="text" class="form-control" name="comment" id= "commentBox" placeholder="Add Comment">
+			<br><br>
+			Upload your Food Photo!
+			<input type="file" class="form-control" name= "image" value="image"
+			placeholder="Add Picture " required>
+
+			<input type="hidden" name="slug" value={{slug}}>
+			<div class="col-md-4 col-md-offset-3">
+				<input type="submit" value="Add Food" class="btn btn-default btn-lg">
+			</div>
+		</form>
+	</div>
+</body>

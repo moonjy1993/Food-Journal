@@ -1,0 +1,46 @@
+<head>
+	<style>
+		body{
+			padding-top:20px; word-wrap:break-word;
+		}
+
+			h3{
+        	font-family: times, Times New Roman, times-roman, georgia, serif;
+			color: white;
+			margin: 0;
+			padding: 0px 0px 6px 0px;
+			font-size: 40px;
+			line-height: 44px;
+			letter-spacing: -2px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="page-header text-center">
+			<h3><span class="fa fa-user"></span> Profile</h3>
+			</br>
+			<a href="/write/table" class="btn btn-warning btn-lg">Write My Journal</a>
+			<a href="/tables" class="btn btn-success btn-lg">Table of Contents</a>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="well">
+					<h3><span class="fa fa-user"></span> Account Information</h3>
+						<p>
+							<strong>User ID</strong>: {{user._id}}<br>
+							<strong>First Name</strong>: {{user.first_name}}<br>
+							<strong>Last Name</strong>: {{user.last_name}}<br>
+							<strong>Email Address</strong>: {{user.email}}<br>
+							<strong>Password</strong>: {{user.password}}
+						</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>

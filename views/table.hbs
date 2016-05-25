@@ -1,0 +1,21 @@
+<style>
+	h1{
+		color:white
+	}
+</style>
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			<h1>Table of Contents</h1>
+			</br>
+		</div>
+		<div class="col-md-4 col-md-offset-4">
+			<ul class="list-group">
+				{{#each list}}
+				<a href="/table/{{this.title}}" class="list-group-item">{{this.title}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				{{this.uploaded}}</a>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</body>

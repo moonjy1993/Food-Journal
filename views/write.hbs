@@ -1,0 +1,45 @@
+
+<style>
+		body{
+			padding-top:20px; word-wrap:break-word;
+		}
+
+			h3{
+        	font-family: times, Times New Roman, times-roman, georgia, serif;
+			color: white;
+			margin: 0;
+			padding: 0px 0px 6px 0px;
+			font-size: 40px;
+			line-height: 44px;
+			letter-spacing: -2px;
+			font-weight: bold;
+		}
+		p{
+			text-align:center;
+			font-size: 150%;
+			color: yellow;
+		}
+</style>
+<div class="container-fluid">
+    <section class="container">
+		<div class="container-page">
+			<div class="col-md-12">
+				<h3 class="text-center">Write a Journal</h3>
+				<hr>
+				<form name="signup" id="signup" action="" method="post" data-parsley-validate>
+
+					<div class="form-group col-lg-12">
+						<p>Write the Title of Your Today's Journal</p>
+						<input type="text" name="title" class="form-control" value="" autofocus
+						required data-parsley-trigger="change" pattern="^[a-zA-Z0-9~@#\^\$&\*\(\)-_\+=\[\]\{\}\|\\,\.\?\s]*{1,32}$"
+         				data-parsley-pattern-message="Must be 1-32 characters!"
+         				data-parsley-required-message="You need to enter a journal title!"/>
+					</div>
+
+					<button type="submit" class="btn btn-warning btn-lg center-block">Create</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</div>
+
